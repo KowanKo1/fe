@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { signOut } from "next-auth/react";
-import TransactionPage from "@/components/pages/TransactionsPage";
+import TransactionPage from "@/components/pages/transactions";
 import ItemsPage from "@/components/pages/items";
 import CategoriesPage from "@/components/pages/categories";
 
