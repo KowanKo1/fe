@@ -1,15 +1,17 @@
-"use client"
+"use client";
+
 import { Typography } from "@/components/ui/typography";
 import { DataTable } from "@/components/ui/data-table";
 import { columns, itemSchema } from "@/components/table-columns/items";
 import { z } from "zod";
-import { Box, ChartNoAxesColumn, LogOut } from "lucide-react";
+import { Box, ChartNoAxesColumn, FileClock, LogOut } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import TransactionPage from "@/components/pages/TransactionsPage";
 
 const items: z.infer<typeof itemSchema>[] = [
   {
@@ -34,94 +36,7 @@ const items: z.infer<typeof itemSchema>[] = [
     category_id: 2,
     id: "2"
   },
-  {
-    createdAt: "2023-10-03T14:20:00.000Z",
-    modifiedAt: "2023-10-03T14:50:00.000Z",
-    name: "Sony WH-1000XM4",
-    code: "SONY-WH1000XM4",
-    description: "Sony WH-1000XM4 Wireless Noise-Canceling Headphones",
-    stock: 20,
-    account_email: "store@example.com",
-    category_id: 3,
-    id: "3"
-  },
-  {
-    createdAt: "2023-10-04T08:30:00.000Z",
-    modifiedAt: "2023-10-04T09:00:00.000Z",
-    name: "Dell XPS 13",
-    code: "XPS13-2023",
-    description: "Dell XPS 13 Laptop, 2023 model",
-    stock: 10,
-    account_email: "store@example.com",
-    category_id: 1,
-    id: "4"
-  },
-  {
-    createdAt: "2023-10-05T10:00:00.000Z",
-    modifiedAt: "2023-10-05T10:30:00.000Z",
-    name: "Apple iPad Pro",
-    code: "IPADPRO-2023",
-    description: "Apple iPad Pro 12.9-inch, 2023 model",
-    stock: 25,
-    account_email: "store@example.com",
-    category_id: 4,
-    id: "5"
-  },
-  {
-    createdAt: "2023-10-01T09:30:00.000Z",
-    modifiedAt: "2023-10-01T10:00:00.000Z",
-    name: "MacBook Pro",
-    code: "MBP-2023",
-    description: "Apple MacBook Pro 16-inch, 2023 model",
-    stock: 15,
-    account_email: "store@example.com",
-    category_id: 1,
-    id: "1"
-  },
-  {
-    createdAt: "2023-10-02T11:45:00.000Z",
-    modifiedAt: "2023-10-02T12:15:00.000Z",
-    name: "Samsung Galaxy S21",
-    code: "SGS21",
-    description: "Samsung Galaxy S21 5G smartphone",
-    stock: 30,
-    account_email: "store@example.com",
-    category_id: 2,
-    id: "2"
-  },
-  {
-    createdAt: "2023-10-03T14:20:00.000Z",
-    modifiedAt: "2023-10-03T14:50:00.000Z",
-    name: "Sony WH-1000XM4",
-    code: "SONY-WH1000XM4",
-    description: "Sony WH-1000XM4 Wireless Noise-Canceling Headphones",
-    stock: 20,
-    account_email: "store@example.com",
-    category_id: 3,
-    id: "3"
-  },
-  {
-    createdAt: "2023-10-04T08:30:00.000Z",
-    modifiedAt: "2023-10-04T09:00:00.000Z",
-    name: "Dell XPS 13",
-    code: "XPS13-2023",
-    description: "Dell XPS 13 Laptop, 2023 model",
-    stock: 10,
-    account_email: "store@example.com",
-    category_id: 1,
-    id: "4"
-  },
-  {
-    createdAt: "2023-10-05T10:00:00.000Z",
-    modifiedAt: "2023-10-05T10:30:00.000Z",
-    name: "Apple iPad Pro",
-    code: "IPADPRO-2023",
-    description: "Apple iPad Pro 12.9-inch, 2023 model",
-    stock: 25,
-    account_email: "store@example.com",
-    category_id: 4,
-    id: "5"
-  }
+  // More items...
 ];
 
 export default function Home() {
@@ -172,8 +87,8 @@ export default function Home() {
           Hello! Here is an update on your inventory
         </Typography>
         <div className="overflow-y-auto">
-          {activeTab === 0 && <DataTable columns={columns} data={items} />}
-          {activeTab === 1 && <div>Transactions content goes here</div>}
+          {activeTab === 0 && <DataTable columns={columns} data={items} />} 
+          {activeTab === 1 && <TransactionPage />} 
         </div>
       </div>
     </div>
