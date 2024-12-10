@@ -1,7 +1,7 @@
 import { DataTable } from "@/components/ui/data-table";
 import { transactionColumns } from "@/components/table-columns/transactions";
 import { useState, useEffect } from "react";
-import { getTransactions } from "@/app/queries/GetTransactions"; 
+import { getTransactions } from "@/app/queries/get-transactions"; 
 
 const TransactionPage = () => {
   const [transactions, setTransactions] = useState<any[]>([]); 

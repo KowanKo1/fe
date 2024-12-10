@@ -18,7 +18,6 @@ export const putUpdateStock = async (id: string, quantity: number, transactionTy
     throw new Error("User is not authenticated");
   }
 
-  // Build the query parameters
   const queryParams = new URLSearchParams({
     item_id: id,
     quantity: quantity.toString(),
@@ -37,9 +36,5 @@ export const putUpdateStock = async (id: string, quantity: number, transactionTy
     throw new Error("Failed to update stock");
   }
 
-  const data = await response.json();
-
-  const parsedData = updateStockSchema.parse(data);
-
-  return parsedData;
+  return true;
 };
