@@ -2,6 +2,7 @@ import { DataTable } from "@/components/ui/data-table";
 import { transactionColumns } from "@/components/table-columns/transactions";
 import { useState, useEffect } from "react";
 import { getTransactions } from "@/app/queries/get-transactions"; 
+import { Input } from "../ui/input";
 
 const TransactionPage = () => {
   const [transactions, setTransactions] = useState<any[]>([]); 
@@ -37,12 +38,10 @@ const TransactionPage = () => {
     <div>
       {/* Search bar */}
       <div className="mb-4">
-        <input
-          type="text"
+        <Input
           placeholder="Search by item name"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="px-4 py-2 border rounded-md"
         />
       </div>
 

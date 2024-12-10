@@ -50,7 +50,6 @@ export default function Page() {
 
   const [categories, setCategories] = useState<z.infer<typeof categorySchema>[]>([]);
 
-
   useEffect(() => {
     const fetchCategories = async () => {
       const data = await getCategories();
