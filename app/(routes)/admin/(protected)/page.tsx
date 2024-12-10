@@ -1,43 +1,16 @@
 "use client";
 
 import { Typography } from "@/components/ui/typography";
-import { DataTable } from "@/components/ui/data-table";
-import { columns, itemSchema } from "@/components/table-columns/items";
-import { z } from "zod";
-import { Box, ChartNoAxesColumn, FileClock, LogOut } from "lucide-react";
+import { Box, ChartNoAxesColumn, LogOut, Shapes } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { signOut } from "next-auth/react";
-import { Button } from "@/components/ui/button";
 import TransactionPage from "@/components/pages/TransactionsPage";
+import ItemsPage from "@/components/pages/items";
+import CategoriesPage from "@/components/pages/categories";
 
-const items: z.infer<typeof itemSchema>[] = [
-  {
-    createdAt: "2023-10-01T09:30:00.000Z",
-    modifiedAt: "2023-10-01T10:00:00.000Z",
-    name: "MacBook Pro",
-    code: "MBP-2023",
-    description: "Apple MacBook Pro 16-inch, 2023 model",
-    stock: 15,
-    account_email: "store@example.com",
-    category_id: 1,
-    id: "1"
-  },
-  {
-    createdAt: "2023-10-02T11:45:00.000Z",
-    modifiedAt: "2023-10-02T12:15:00.000Z",
-    name: "Samsung Galaxy S21",
-    code: "SGS21",
-    description: "Samsung Galaxy S21 5G smartphone",
-    stock: 30,
-    account_email: "store@example.com",
-    category_id: 2,
-    id: "2"
-  },
-  // More items...
-];
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
@@ -66,6 +39,15 @@ export default function Home() {
             Transactions
           </Typography>
         </div>
+        <div
+          className={cn("flex gap-2 items-center pl-4 w-36 cursor-pointer", activeTab === 2 && "border-l")}
+          onClick={() => setActiveTab(2)}
+        >
+          <Shapes size={24} className="text-secondary-normal text-kowan-light" />
+          <Typography variant="s6" className="text-secondary-normal text-left text-kowan-light">
+            Categories
+          </Typography>
+        </div>
         <div className="mt-auto flex">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -83,12 +65,15 @@ export default function Home() {
         </div>
       </div>
       <div className="w-full grow bg-kowan-light rounded-3xl p-4 flex flex-col max-h-screen">
-        <Typography variant="h5" className="text-secondary-normal text-left mb-6">
-          Hello! Here is an update on your inventory
-        </Typography>
-        <div className="overflow-y-auto">
-          {activeTab === 0 && <DataTable columns={columns} data={items} />} 
+        <div className="p-2">
+          <Typography variant="h5" className="text-secondary-normal text-left">
+            Hello! Here is an update on your inventory
+          </Typography>
+        </div>
+        <div className="overflow-y-auto p-2">
+          {activeTab === 0 && <ItemsPage />}
           {activeTab === 1 && <TransactionPage />} 
+          {activeTab === 2 && <CategoriesPage />} 
         </div>
       </div>
     </div>
