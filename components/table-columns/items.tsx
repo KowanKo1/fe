@@ -4,6 +4,8 @@ import { ColumnDef } from "@tanstack/react-table"
 import { z } from "zod";
 import dayjs from "dayjs";
 import "dayjs/locale/id";
+import Link from "next/link";
+import { Button } from "../ui/button";
 
 export const itemSchema = z.object({
   createdAt: z.string(),
@@ -14,7 +16,7 @@ export const itemSchema = z.object({
   stock: z.number().int().nonnegative(),
   account_email: z.string().email(),
   category_id: z.number().int().positive(),
-  id: z.string(),
+  id: z.number(),
 });
 
 export const columns: ColumnDef<z.infer<typeof itemSchema>>[] = [
@@ -40,11 +42,7 @@ export const columns: ColumnDef<z.infer<typeof itemSchema>>[] = [
   },
   {
     accessorKey: "category_id",
-    header: "Category ID",
-  },
-  {
-    accessorKey: "id",
-    header: "ID",
+    header: "CID",
   },
   {
     accessorKey: "createdAt",
@@ -59,5 +57,22 @@ export const columns: ColumnDef<z.infer<typeof itemSchema>>[] = [
     cell: ({ row }) => (
       <div className="max-w-4">{dayjs(row.original.modifiedAt).format("DD MMMM YYYY, HH:mm")}</div>
     ),
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      const item = row.original;
+      
+      return (
+        <Link href={`/admin/item/${item.id}/update-stock`}>
+          <Button
+            variant="outline"
+            size="sm"
+          >
+            Update Stock
+          </Button>
+      </Link>
+      );
+    },
   },
 ];
